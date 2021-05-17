@@ -16,8 +16,12 @@ export class CartController {
   constructor(private readonly cartService: CartService) {}
   @Post()
   @UsePipes(ValidationPipe)
-  async create(@Body() cartDto: CartDto) {
-    return await this.cartService.create(cartDto);
+  async add(@Body() cartDto: CartDto) {
+    return await this.cartService.add(cartDto);
+  }
+  @Post(':userId')
+  async create(@Param('userId') userId: string) {
+    return await this.cartService.create(userId);
   }
   @Put()
   @UsePipes(ValidationPipe)

@@ -22,7 +22,7 @@ export class CartService {
     return { cart, items: cartItems };
   }
 
-  async create(cartDto: CartDto): Promise<void> {
+  async add(cartDto: CartDto): Promise<void> {
     const { userId, productId } = cartDto;
     const existsUserCart = await this.getCartByUserId(userId);
     if (existsUserCart) {
@@ -30,6 +30,13 @@ export class CartService {
     } else {
       const cart = await this.cartRepository.save({ userId });
       await this.productsRepository.save({ productId, cart });
+    }
+  }
+
+  async create(userId: string): Promise<void> {
+    const existsUserCart = await this.getCartByUserId(userId);
+    if (!existsUserCart) {
+      await this.cartRepository.save({ userId });
     }
   }
 
