@@ -5,7 +5,7 @@
 1. Baixar o repositório:
 
 ~~~
-git clone URL
+git clone https://github.com/gustavoaldar/kuanto-kusta-ms-cart.git
 ~~~
 
 2. Instalar as dependências do projeto:
